@@ -17,11 +17,7 @@ function renderLanding() {
     sendAnalyticsEvent('5912_page_view_kk_var5', '5912_page_view_kk_var5');
     sessionStorage.setItem('landingViewed', '1');
   }
-  // Если уже была заглушка, не показываем лендинг
-  if (localStorage.getItem('placeholderShown') === '1') {
-    renderPlaceholder();
-    return;
-  }
+  
   app.innerHTML = `
     <div class="landing">
       <img src="img/calendar.png" alt="Календарь" class="landing__img" />
@@ -41,30 +37,11 @@ function renderLanding() {
     </div>
   `;
   document.getElementById('sendBtn').onclick = () => {
-    localStorage.setItem('placeholderShown', '1');
-    renderPlaceholder();
-    // Очищаем историю, чтобы нельзя было вернуться назад
-    history.replaceState(null, '', location.href);
+    // Отправляем событие клика по кнопке
+    sendAnalyticsEvent('5912_click_order_var5', '5912_click_order_var5');
+    // Переход по URL вместо показа заглушки
+    window.location.href = 'alfabank://sdui_screen?screenName=InvestmentLongread&fromCurrent=true&endpoint=v1/invest-main-screen-view/investment-longread/66427%3flocation=AM%26campaignCode=GH';
   };
-}
-
-function renderPlaceholder() {
-  // Отправляем событие просмотра финальной страницы только один раз за сессию
-  if (!sessionStorage.getItem('endPageViewed')) {
-    sendAnalyticsEvent('5912_end_page_view_kk_var5', '5912_end_page_view_kk_var5');
-    sessionStorage.setItem('endPageViewed', '1');
-  }
-  app.innerHTML = `
-    <div class="placeholder">
-      <img src="img/moai.png" alt="Moai" class="placeholder__img" />
-      <div class="placeholder__title">Только тссс</div>
-      <div class="placeholder__desc">
-        Вы поучаствовали в очень важном исследовании, которое поможет улучшить продукт. Вы – наш герой!
-      </div>
-    </div>
-  `;
-  // Очищаем историю, чтобы нельзя было вернуться назад
-  history.replaceState(null, '', location.href);
 }
 
 renderLanding(); 

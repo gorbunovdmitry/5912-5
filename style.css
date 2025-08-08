@@ -120,33 +120,6 @@ body {
   background: #444;
 }
 
-/* Заглушка */
-.placeholder {
-  min-height: 100vh;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.placeholder__img {
-  width: 220px;
-  max-width: 60vw;
-  margin-bottom: 32px;
-}
-.placeholder__title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 18px;
-}
-.placeholder__desc {
-  font-size: 1.1rem;
-  color: #222;
-  max-width: 90vw;
-  margin: 0 auto;
-}
-
 @media (max-width: 480px) {
   .landing {
     border-radius: 0;
@@ -171,9 +144,6 @@ body {
   .landing__button {
     width: calc(100% - 16px);
     margin: 0 8px;
-  }
-  .placeholder__img {
-    width: 150px;
   }
   .landing__list {
     padding-left: 0;
